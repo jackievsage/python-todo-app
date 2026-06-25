@@ -1,20 +1,16 @@
 """
 todo.py — A simple command-line To-Do List app
-Freshman CS Project | Covers: lists, dicts, file I/O, functions, loops
 """
 
 import json
 import os
 from datetime import datetime
 
-# ── File where tasks are saved ─────────────────────────────────────────────
 DATA_FILE = "tasks.json"
 
-PRIORITY_LABELS = {1: "🔴 High", 2: "🟡 Medium", 3: "🟢 Low"}
+PRIORITY_LABELS = {1: "High", 2: "Medium", 3: "Low"}
 PRIORITY_ORDER  = {1: 0, 2: 1, 3: 2}   # for sorting
 
-
-# ── Data helpers ───────────────────────────────────────────────────────────
 
 def load_tasks():
     """Load tasks from the JSON file. Returns an empty list if none exist."""
@@ -34,7 +30,7 @@ def save_tasks(tasks):
 
 def print_header():
     print("\n" + "=" * 45)
-    print("         ✅  MY TO-DO LIST  ✅")
+    print("MY TO-DO LIST")
     print("=" * 45)
 
 
@@ -65,8 +61,6 @@ def print_tasks(tasks):
     print("=" * 45)
 
 
-# ── Core actions ───────────────────────────────────────────────────────────
-
 def add_task(tasks):
     title = input("\n  Task title: ").strip()
     if not title:
@@ -88,7 +82,7 @@ def add_task(tasks):
     }
     tasks.append(task)
     save_tasks(tasks)
-    print(f"  ✅  Added: \"{title}\"")
+    print(f" Added: \"{title}\"")
 
 
 def complete_task(tasks):
@@ -99,7 +93,7 @@ def complete_task(tasks):
     try:
         num = int(input("\n  Mark task # as done (0 to cancel): "))
     except ValueError:
-        print("  ⚠  Please enter a number.")
+        print("Please enter a number.")
         return
 
     if num == 0:
@@ -136,9 +130,9 @@ def delete_task(tasks):
         task = sorted_tasks[num - 1]
         tasks.remove(task)
         save_tasks(tasks)
-        print(f"  🗑  \"{task['title']}\" deleted.")
+        print(f" \"{task['title']}\" deleted.")
     else:
-        print("  ⚠  Task number out of range.")
+        print("Task number out of range.")
 
 
 def clear_completed(tasks):
@@ -148,8 +142,6 @@ def clear_completed(tasks):
     save_tasks(tasks)
     print(f"  🧹  Removed {removed} completed task(s).")
 
-
-# ── Menu ───────────────────────────────────────────────────────────────────
 
 def print_menu():
     print("\n  What do you want to do?")
@@ -163,7 +155,7 @@ def print_menu():
 
 def main():
     tasks = load_tasks()
-    print("\n  Welcome to your To-Do List! 🎉")
+    print("\n  Welcome to your To-Do List!")
 
     while True:
         print_menu()
@@ -180,10 +172,10 @@ def main():
         elif choice == "5":
             clear_completed(tasks)
         elif choice in ("q", "quit", "exit"):
-            print("\n  Bye! Stay productive 👋\n")
+            print("\n  Bye! Stay productive \n")
             break
         else:
-            print("  ⚠  Invalid choice — try 1-5 or q.")
+            print(" nvalid choice — try 1-5 or q.")
 
 
 if __name__ == "__main__":
